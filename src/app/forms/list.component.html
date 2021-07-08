@@ -1,0 +1,42 @@
+﻿<h1>Formulaires</h1>
+<a routerLink="add" class="btn btn-sm btn-success mb-2">Ajouter un formulaire</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th style="width: 20%">No. du formulaire</th>
+            <th style="width: 25%">Libellé du formulaire</th>
+            <th style="width: 50%">Liste des questions</th>
+            <th style="width: 25%"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users">
+            <td>{{user.firstName}}</td>
+            <td>{{user.lastName}}</td>
+            <td>
+                <select class="form-control">
+                    <option>Êtes-vous un lecteur ?</option>
+                    <option>Quelle est votre tranche d'âge ?</option>
+                    <option>Vous êtes un homme ou une femme ?</option>
+                    <option>Quel type de livre lisez vous ?</option>
+                    <option>Quel est votre fréquence moyenne d'achat de livres ?</option>
+                    <option>Où achetez-vous vos livres ?</option>
+                    <option>Préférez-vous acheter neuf ou d'occasion ?</option>
+                    <option>Quel est votre budget livre par ans ?</option>
+                </select>
+            </td>
+            <td style="white-space: nowrap">
+                <a routerLink="edit/{{user.id}}" class="btn btn-sm btn-primary mr-1">Modifier</a>
+                <button (click)="deleteUser(user.id)" class="btn btn-sm btn-danger" [disabled]="user.isDeleting">
+                    <span *ngIf="user.isDeleting" class="spinner-border spinner-border-sm"></span>
+                    <span *ngIf="!user.isDeleting">Supprimer</span>
+                </button>
+            </td>
+        </tr>
+        <tr *ngIf="!users">
+            <td colspan="4" class="text-center">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
